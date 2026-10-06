@@ -1321,6 +1321,9 @@ endfunction
 let s:remote_headers = {}
 
 function! fugitive#RemoteHttpHeaders(remote) abort
+  " Skip network probe
+  return {}
+
   let remote = type(a:remote) ==# type({}) ? get(a:remote, 'remote', '') : a:remote
   if type(remote) !=# type('') || remote !~# '^https\=://.' || !s:executable('curl')
     return {}
